@@ -24,6 +24,7 @@ const Business = React.lazy(() => import('./pages/Business'))
 const ContactP = React.lazy(() => import('./pages/Contact').then((m) => ({ default: m.Contact })))
 const PrivacyP = React.lazy(() => import('./pages/Contact').then((m) => ({ default: m.Privacy })))
 const About = React.lazy(() => import('./pages/About'))
+const Admin = React.lazy(() => import('./pages/Admin'))
 
 export const PRELOAD = ['/assets/hero-leaves.jpg', '/assets/building-exterior.jpg', '/assets/residence-interior.jpg', '/assets/business-office.jpg', '/assets/panorama-aerial.jpg', '/assets/amenities-rooftop.jpg', '/assets/location-street.jpg']
 
@@ -40,10 +41,14 @@ export function Seo({ title, desc }: { title: string; desc?: string }) {
 
 /* ---------------- Preloader ---------------- */
 function Preloader() {
+  const loc = useLocation()
   const { loaded, setLoaded } = useUI()
   const [pct, setPct] = useState(0)
   const ref = useRef<HTMLDivElement>(null)
+  const isAdmin = loc.pathname.includes('/admin')
+
   useEffect(() => {
+    if (isAdmin) { setLoaded(true); return }
     if (sessionStorage.getItem('lg-loaded')) { setLoaded(true); return }
     let done = 0
     const start = performance.now()
@@ -71,8 +76,9 @@ function Preloader() {
     const iv = setInterval(() => setPct((p) => (p >= 100 ? 100 : Math.min(p + 1, 92))), 40); setTimeout(() => clearInterval(iv), 6000)
     return () => clearInterval(iv)
     // eslint-disable-next-line
-  }, [])
-  if (loaded) return null
+  }, [isAdmin])
+
+  if (loaded || isAdmin) return null
   return (
     <div className="preloader" ref={ref} role="status" aria-label="Loading">
       <div className="pl-brand">{BRAND}</div>
@@ -85,11 +91,16 @@ function Preloader() {
 
 /* ---------------- Cursor ---------------- */
 function Cursor() {
+  const loc = useLocation()
   const ref = useRef<HTMLDivElement>(null)
   const { cursorLabel, setCursor } = useUI()
+  const isAdmin = loc.pathname.includes('/admin')
+
   useEffect(() => {
+    if (isAdmin) return
     if (!window.matchMedia('(hover:hover) and (pointer:fine)').matches) return
-    const el = ref.current!
+    const el = ref.current
+    if (!el) return
     const xTo = gsap.quickTo(el, 'x', { duration: 0.35, ease: 'power3' })
     const yTo = gsap.quickTo(el, 'y', { duration: 0.35, ease: 'power3' })
     const move = (e: MouseEvent) => { xTo(e.clientX); yTo(e.clientY) }
@@ -100,7 +111,9 @@ function Cursor() {
     }
     window.addEventListener('mousemove', move); window.addEventListener('mouseover', over)
     return () => { window.removeEventListener('mousemove', move); window.removeEventListener('mouseover', over) }
-  }, [])
+  }, [isAdmin])
+
+  if (isAdmin) return null
   return <div className="cursor" ref={ref}>{cursorLabel}</div>
 }
 
@@ -122,6 +135,7 @@ function NavLinks({ onClick }: { onClick?: () => void }) {
     [t('nav.home'), '/'], [t('nav.three'), '/3d'], [t('nav.residences'), '/residences'],
     [t('nav.business'), '/business'], [t('nav.retail'), '/retail-spaces'], [t('nav.location'), '/#Around'],
     [t('nav.amenities'), '/#Amenities'], [t('nav.contact'), '/contact'], [t('nav.about'), '/about-the-investor'],
+    ['Admin Studio', '/admin'],
   ]
   return (
     <nav className="menu-links" aria-label="Main">
@@ -151,14 +165,16 @@ function LangSwitch() {
 }
 
 function Header() {
+  const loc = useLocation()
+  const isAdmin = loc.pathname.includes('/admin')
   const { t } = useTranslation()
   const { menuOpen, setMenu } = useUI()
   const ref = useRef<HTMLElement>(null)
   const overlay = useRef<HTMLDivElement>(null)
-  const loc = useLocation()
   const light = /\/(residences|retail-spaces)\/[^/]+$|privacy-policy/.test(loc.pathname)
 
   useEffect(() => {
+    if (isAdmin) return
     let last = 0
     const onScroll = () => {
       const y = window.scrollY; const el = ref.current; if (!el) return
@@ -169,10 +185,11 @@ function Header() {
     }
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+  }, [isAdmin])
 
   useEffect(() => { setMenu(false) }, [loc.pathname])
   useEffect(() => {
+    if (isAdmin) return
     const el = overlay.current; if (!el) return
     const lenis = (window as any).__lenis as Lenis | undefined
     if (menuOpen) {
@@ -187,7 +204,9 @@ function Header() {
     const esc = (e: KeyboardEvent) => e.key === 'Escape' && setMenu(false)
     window.addEventListener('keydown', esc)
     return () => window.removeEventListener('keydown', esc)
-  }, [menuOpen])
+  }, [menuOpen, isAdmin])
+
+  if (isAdmin) return null
 
   return (
     <>
@@ -255,7 +274,7 @@ export function Footer() {
   const onSubmit = async () => { await new Promise((r) => setTimeout(r, 700)); setSent(true) }
   const cols: [string, string][] = [
     [t('nav.home'), '/'], [t('nav.three'), '/3d'], [t('nav.residences'), '/residences'], [t('nav.business'), '/business'],
-    [t('nav.retail'), '/retail-spaces'], [t('nav.contact'), '/contact'], [t('nav.about'), '/about-the-investor'], ['Privacy policy', '/privacy-policy'],
+    [t('nav.retail'), '/retail-spaces'], [t('nav.contact'), '/contact'], [t('nav.about'), '/about-the-investor'], ['Admin Portal', '/admin'], ['Privacy policy', '/privacy-policy'],
   ]
   return (
     <footer className="footer">
@@ -357,6 +376,10 @@ export default function App() {
         <Suspense fallback={<div className="notfound"><p className="eyebrow">Loading…</p></div>}>
           <Routes>
             <Route path="/" element={<Navigate to="/en" replace />} />
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/admin/*" element={<Admin />} />
+            <Route path="/:lang/admin" element={<Admin />} />
+            <Route path="/:lang/admin/*" element={<Admin />} />
             <Route path="/:lang" element={<Home />} />
             <Route path="/:lang/3d" element={<ThreeD />} />
             <Route path="/:lang/residences" element={<ResidencesP />} />

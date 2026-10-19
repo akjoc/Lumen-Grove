@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -306,6 +307,63 @@ function Installment() {
   )
 }
 
+/* 9 — Admin Portal Teaser */
+function AdminPortalSection() {
+  return (
+    <section className="section admin-portal-section">
+      <div className="wrap">
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '44px', alignItems: 'center' }}>
+          <div>
+            <p className="eyebrow" style={{ color: '#b99a62' }}>Project Management · CMS</p>
+            <h2 className="h-lg" style={{ color: '#ffffff', marginTop: 12 }}>
+              Lumen Grove<br />Admin Studio
+            </h2>
+            <p className="lead light mt-s" style={{ color: '#a1b2c4', maxWidth: '44ch' }}>
+              Access the administrative workstation to manage public website content, monitor live availability across 208 residences, inspect 49 commercial spaces, and review prospective client inquiries.
+            </p>
+            <div style={{ marginTop: 30, display: 'flex', gap: 14, flexWrap: 'wrap' }}>
+              <Link to="/admin" className="btn gold" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+                Launch Admin Portal ↗
+              </Link>
+              <L to="/residences" className="btn light">
+                Browse Residences
+              </L>
+            </div>
+          </div>
+          <div className="admin-card-box">
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #1f3750', paddingBottom: 16, marginBottom: 20 }}>
+              <span style={{ fontSize: 11, letterSpacing: '0.16em', textTransform: 'uppercase', color: '#8fa6bc' }}>
+                Management Coordinates
+              </span>
+              <span style={{ fontSize: 10, background: '#1c4d37', color: '#72e2aa', padding: '3px 10px', borderRadius: 20, fontWeight: 600 }}>
+                ● Operational
+              </span>
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px 24px' }}>
+              <div>
+                <strong style={{ fontSize: 32, display: 'block', color: '#ffffff', fontFamily: 'Georgia, serif' }}>208</strong>
+                <span style={{ fontSize: 11, color: '#8fa6bc', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Residences Inventory</span>
+              </div>
+              <div>
+                <strong style={{ fontSize: 32, display: 'block', color: '#ffffff', fontFamily: 'Georgia, serif' }}>49</strong>
+                <span style={{ fontSize: 11, color: '#8fa6bc', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Retail & Offices</span>
+              </div>
+              <div>
+                <strong style={{ fontSize: 32, display: 'block', color: '#ffffff', fontFamily: 'Georgia, serif' }}>08</strong>
+                <span style={{ fontSize: 11, color: '#8fa6bc', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Live Content Sections</span>
+              </div>
+              <div>
+                <strong style={{ fontSize: 32, display: 'block', color: '#ffffff', fontFamily: 'Georgia, serif' }}>100%</strong>
+                <span style={{ fontSize: 11, color: '#8fa6bc', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Synchronized State</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 export default function Home() {
   return (
     <main>
@@ -318,7 +376,14 @@ export default function Home() {
       <Amenities />
       <Above />
       <Installment />
+      <AdminPortalSection />
       <Footer />
+      <Link to="/admin" className="floating-admin-btn" title="Open Lumen Grove Admin Studio">
+        <span className="dot" />
+        <span>Admin Studio</span>
+        <span style={{ fontSize: 11 }}>↗</span>
+      </Link>
     </main>
   )
 }
+
