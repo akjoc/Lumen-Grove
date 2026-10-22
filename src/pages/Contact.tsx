@@ -1,3 +1,4 @@
+import { asset } from '../asset'
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
@@ -98,7 +99,7 @@ export function Contact() {
     <main>
       <Seo title="Contact" desc="Submit a request — callback, business or general inquiry at Lumen Grove." />
       <section className="page-hero" style={{ minHeight: '52vh' }}>
-        <div className="bg" style={{ backgroundImage: 'url(/assets/location-street.jpg)' }} role="img" aria-label="Lumen Grove street" />
+        <div className="bg" style={{ backgroundImage: `url(${asset('assets/location-street.jpg')})` }} role="img" aria-label="Lumen Grove street" />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(0deg,rgba(13,38,30,.85),rgba(13,38,30,.25) 62%)' }} />
         <div className="inner"><div className="wrap">
           <p className="eyebrow light">Contact</p>

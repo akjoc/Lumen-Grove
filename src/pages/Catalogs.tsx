@@ -1,3 +1,4 @@
+import { asset } from '../asset'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useParams, useSearchParams, Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
@@ -67,7 +68,7 @@ export function Residences() {
   return (
     <main>
       <Seo title="Residences" desc="Browse 208 residences at Lumen Grove — filter by rooms, area, floor and features." />
-      <Hero img="/assets/residence-interior.jpg" title="Residences" eyebrow="Live in the canopy" intro="208 homes across two planted wings — from garden residences at the roots to penthouses in the crown." />
+      <Hero img={asset('assets/residence-interior.jpg')} title="Residences" eyebrow="Live in the canopy" intro="208 homes across two planted wings — from garden residences at the roots to penthouses in the crown." />
       <div className="filterbar"><div className="wrap">
         <div className="chips" role="group" aria-label="Room type">
           {['All', '1', '1.5', '2', '2.5', '3', '4'].map((r) => (
@@ -163,10 +164,10 @@ export function ResidenceDetail() {
           <div>
             <div className="unit-plan" style={{ borderRadius: 8, border: '1px solid var(--line)' }}><PlanSVG planSeed={u.planSeed} rooms={u.rooms} large /></div>
             <div className="gallery mt-m">
-              <ParallaxImage src="/assets/residence-interior.jpg" alt="Living space" className="g-main" />
+              <ParallaxImage src={asset('assets/residence-interior.jpg')} alt="Living space" className="g-main" />
               <div className="g-side">
-                <ParallaxImage src="/assets/amenities-rooftop.jpg" alt="Terrace view" />
-                <ParallaxImage src="/assets/building-exterior.jpg" alt="Facade" />
+                <ParallaxImage src={asset('assets/amenities-rooftop.jpg')} alt="Terrace view" />
+                <ParallaxImage src={asset('assets/building-exterior.jpg')} alt="Facade" />
               </div>
             </div>
           </div>
@@ -217,7 +218,7 @@ export function Retail() {
   return (
     <main>
       <Seo title="Retail Spaces" desc="Offices and retail units at Lumen Grove — 49 spaces from 71 to 959 m²." />
-      <Hero img="/assets/business-office.jpg" title="Retail Spaces" eyebrow="Offices & retail" intro="49 workplaces and storefronts beneath the canopy, from intimate studios to full-floor headquarters." />
+      <Hero img={asset('assets/business-office.jpg')} title="Retail Spaces" eyebrow="Offices & retail" intro="49 workplaces and storefronts beneath the canopy, from intimate studios to full-floor headquarters." />
       <div className="filterbar"><div className="wrap">
         <div className="chips" role="group" aria-label="Space type">
           {['All', 'Offices', 'Retail'].map((r) => <button key={r} className={`chip ${type === r ? 'on' : ''}`} onClick={() => { setType(r); setShown(PAGE) }}>{r}</button>)}
@@ -281,7 +282,7 @@ export function RetailDetail() {
         <div className="grid-2 mt-l" style={{ alignItems: 'start' }}>
           <div>
             <div className="unit-plan" style={{ borderRadius: 8, border: '1px solid var(--line)' }}><PlanSVG planSeed={u.planSeed} rooms={u.type === 'Retail' ? 1 : 3} large /></div>
-            <ParallaxImage src="/assets/business-office.jpg" alt="Office interior" className="mt-m" style={{ height: 320, borderRadius: 8 }} />
+            <ParallaxImage src={asset('assets/business-office.jpg')} alt="Office interior" className="mt-m" style={{ height: 320, borderRadius: 8 }} />
           </div>
           <div>
             <table className="spec-table"><tbody>

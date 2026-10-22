@@ -1,3 +1,4 @@
+import { asset } from '../asset'
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
@@ -45,9 +46,9 @@ function Hero() {
   ]
   return (
     <section className="hero-pin" ref={ref} aria-label="Introduction">
-      <div className="hero-layer back" style={{ backgroundImage: 'url(/assets/hero-leaves.jpg)' }} />
-      <div className="hero-layer mid" style={{ backgroundImage: 'url(/assets/hero-leaves.jpg)' }} />
-      <div className="hero-layer front" style={{ backgroundImage: 'url(/assets/hero-leaves.jpg)' }} />
+      <div className="hero-layer back" style={{ backgroundImage: `url(${asset('assets/hero-leaves.jpg')})` }} />
+      <div className="hero-layer mid" style={{ backgroundImage: `url(${asset('assets/hero-leaves.jpg')})` }} />
+      <div className="hero-layer front" style={{ backgroundImage: `url(${asset('assets/hero-leaves.jpg')})` }} />
       <div className="hero-shade" />
       <div className="hero-brand">
         <p className="eyebrow light">{t('hero.design')}</p>
@@ -91,7 +92,7 @@ function Location() {
         <SplitReveal text={t('loc.title')} className="h-xl" />
         <div className="loc-grid mt-l">
           <div style={{ position: 'relative' }}>
-            <ParallaxImage src="/assets/location-street.jpg" alt="Tree-lined street around Lumen Grove" className="loc-img" />
+            <ParallaxImage src={asset('assets/location-street.jpg')} alt="Tree-lined street around Lumen Grove" className="loc-img" />
             {pois.map((p, i) => <span key={p.name} className={`loc-pin ${open === i ? 'on' : ''}`} style={{ left: `${p.x}%`, top: `${p.y}%` }}>⌖</span>)}
             <FadeUp><p className="lead mt-m">{t('loc.intro')}</p></FadeUp>
           </div>
@@ -162,8 +163,8 @@ function Roots() {
   }, [])
   return (
     <section className="roots-pin" ref={ref}>
-      <div className="roots-img r1"><img src="/assets/residence-interior.jpg" alt="Residence interior with garden view" /></div>
-      <div className="roots-img r2"><img src="/assets/amenities-rooftop.jpg" alt="Rooftop garden at golden hour" /></div>
+      <div className="roots-img r1"><img src={asset('assets/residence-interior.jpg')} alt="Residence interior with garden view" /></div>
+      <div className="roots-img r2"><img src={asset('assets/amenities-rooftop.jpg')} alt="Rooftop garden at golden hour" /></div>
       <div className="roots-copy">
         <p className="eyebrow">The way of living</p>
         <h2>Your roots</h2>
@@ -198,7 +199,7 @@ function Amenities() {
   ]
   return (
     <section className="amenities section" id="Amenities" ref={ref}>
-      <div className="bg" style={{ backgroundImage: 'url(/assets/amenities-rooftop.jpg)' }} role="img" aria-label="Rooftop park and café" />
+      <div className="bg" style={{ backgroundImage: `url(${asset('assets/amenities-rooftop.jpg')})` }} role="img" aria-label="Rooftop park and café" />
       <div className="shade" />
       <div className="wrap" style={{ position: 'relative' }}>
         <p className="eyebrow light">Residents’ world</p>
@@ -242,9 +243,9 @@ function Above() {
   return (
     <section className="above-pin" ref={ref} aria-label="View from above">
       <div className="above-track">
-        <div className="above-pano" style={{ backgroundImage: 'url(/assets/panorama-aerial.jpg)' }}>
+        <div className="above-pano" style={{ backgroundImage: `url(${asset('assets/panorama-aerial.jpg')})` }}>
           <div className="above-mask-wrap">
-            <span className="above-letters" style={{ backgroundImage: 'url(/assets/panorama-aerial.jpg)' }}>LG</span>
+            <span className="above-letters" style={{ backgroundImage: `url(${asset('assets/panorama-aerial.jpg')})` }}>LG</span>
           </div>
           <div className="cloud c1" style={{ top: '12%', left: '38%' }}><CloudSVG w={380} /></div>
           <div className="cloud c2" style={{ top: '58%', left: '62%' }}><CloudSVG w={520} /></div>
@@ -282,7 +283,7 @@ function Installment() {
   }
   return (
     <section className="section"><div className="wrap"><div className="inst-grid">
-      <RevealImage src="/assets/building-exterior.jpg" alt="Lumen Grove facade detail" style={{ height: 'clamp(380px,60vh,620px)' }} />
+      <RevealImage src={asset('assets/building-exterior.jpg')} alt="Lumen Grove facade detail" style={{ height: 'clamp(380px,60vh,620px)' }} />
       <div ref={ref}>
         <p className="eyebrow">Payment plan</p>
         <SplitReveal text={"Own it in\nfive seasons"} className="h-lg" />
@@ -370,8 +371,8 @@ export default function Home() {
       <Seo title="Home" desc="Lumen Grove — a living canopy in the city. Premium residences, business and retail spaces." />
       <Hero />
       <Location />
-      <Teaser img="/assets/residence-interior.jpg" eyebrow="Live" title="Residences" text="One to four bedroom homes with planted terraces, garden-level residences and penthouses in the crown of the canopy. 208 ways to put down roots." to="/residences" cta="Browse residences" />
-      <Teaser img="/assets/business-office.jpg" eyebrow="Work & trade" title="Business" text="Offices and retail woven into the ground canopy — daylight workplaces above a shaded, walkable street of independent shops and cafés." to="/business" cta="Explore business" />
+      <Teaser img={asset('assets/residence-interior.jpg')} eyebrow="Live" title="Residences" text="One to four bedroom homes with planted terraces, garden-level residences and penthouses in the crown of the canopy. 208 ways to put down roots." to="/residences" cta="Browse residences" />
+      <Teaser img={asset('assets/business-office.jpg')} eyebrow="Work & trade" title="Business" text="Offices and retail woven into the ground canopy — daylight workplaces above a shaded, walkable street of independent shops and cafés." to="/business" cta="Explore business" />
       <Roots />
       <Amenities />
       <Above />

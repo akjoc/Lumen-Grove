@@ -1,3 +1,4 @@
+import { asset } from './asset'
 import React, { Suspense, useEffect, useRef, useState } from 'react'
 import { Routes, Route, Navigate, Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
@@ -26,7 +27,7 @@ const PrivacyP = React.lazy(() => import('./pages/Contact').then((m) => ({ defau
 const About = React.lazy(() => import('./pages/About'))
 const Admin = React.lazy(() => import('./pages/Admin'))
 
-export const PRELOAD = ['/assets/hero-leaves.jpg', '/assets/building-exterior.jpg', '/assets/residence-interior.jpg', '/assets/business-office.jpg', '/assets/panorama-aerial.jpg', '/assets/amenities-rooftop.jpg', '/assets/location-street.jpg']
+export const PRELOAD = [asset('assets/hero-leaves.jpg'), asset('assets/building-exterior.jpg'), asset('assets/residence-interior.jpg'), asset('assets/business-office.jpg'), asset('assets/panorama-aerial.jpg'), asset('assets/amenities-rooftop.jpg'), asset('assets/location-street.jpg')]
 
 export function Seo({ title, desc }: { title: string; desc?: string }) {
   return (
@@ -34,7 +35,7 @@ export function Seo({ title, desc }: { title: string; desc?: string }) {
       <title>{title} — {BRAND}</title>
       {desc && <meta name="description" content={desc} />}
       <meta property="og:title" content={`${title} — ${BRAND}`} />
-      <meta property="og:image" content="/assets/building-exterior.jpg" />
+      <meta property="og:image" content={asset('assets/building-exterior.jpg')} />
     </Helmet>
   )
 }
@@ -315,7 +316,7 @@ export function Footer() {
         <p className="legal">This website is a client presentation mockup. All visualizations are artistic impressions; areas, layouts and availability are indicative and subject to change without notice. Developer: Northfield Property Group. © {new Date().getFullYear()} {BRAND}. All rights reserved.</p>
       </div>
       <div className="footer-scene" aria-hidden>
-        <img className="front" src="/assets/building-exterior.jpg" alt="" loading="lazy" />
+        <img className="front" src={asset('assets/building-exterior.jpg')} alt="" loading="lazy" />
         <Tree side="left" /><Tree side="right" />
       </div>
     </footer>

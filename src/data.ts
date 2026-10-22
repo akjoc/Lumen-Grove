@@ -1,3 +1,4 @@
+import { asset } from './asset'
 // Seed data — generated deterministically so slugs are stable across reloads.
 let seed = 42
 const rnd = () => { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646 }
@@ -64,12 +65,12 @@ export const pois = [
 ]
 
 export const projects = [
-  { title: 'The Alder Quarter', city: 'Your City', img: '/assets/building-exterior.jpg', desc: 'A garden district of 320 homes wrapped around a preserved grove of alder trees, completed in 2019.' },
-  { title: 'Meridian Works', city: 'Northport', img: '/assets/business-office.jpg', desc: 'Adaptive reuse of a former printing works into light-filled offices and maker studios.' },
-  { title: 'Casa Verde', city: 'Southfield', img: '/assets/residence-interior.jpg', desc: 'Courtyard residences where every balcony is a small orchard; sold out within a single season.' },
-  { title: 'The Canopy Hotel', city: 'Your City', img: '/assets/amenities-rooftop.jpg', desc: 'A rooftop-forest hotel whose restaurant grows much of its menu forty metres above the street.' },
-  { title: 'Harbour Steps', city: 'Eastbay', img: '/assets/panorama-aerial.jpg', desc: 'Terraced homes stepping down to the water, each level planted as a hanging garden.' },
-  { title: 'Studio Nine', city: 'Northport', img: '/assets/location-street.jpg', desc: 'Compact first homes above a street of independent shops — proof that small can still be generous.' },
+  { title: 'The Alder Quarter', city: 'Your City', img: asset('assets/building-exterior.jpg'), desc: 'A garden district of 320 homes wrapped around a preserved grove of alder trees, completed in 2019.' },
+  { title: 'Meridian Works', city: 'Northport', img: asset('assets/business-office.jpg'), desc: 'Adaptive reuse of a former printing works into light-filled offices and maker studios.' },
+  { title: 'Casa Verde', city: 'Southfield', img: asset('assets/residence-interior.jpg'), desc: 'Courtyard residences where every balcony is a small orchard; sold out within a single season.' },
+  { title: 'The Canopy Hotel', city: 'Your City', img: asset('assets/amenities-rooftop.jpg'), desc: 'A rooftop-forest hotel whose restaurant grows much of its menu forty metres above the street.' },
+  { title: 'Harbour Steps', city: 'Eastbay', img: asset('assets/panorama-aerial.jpg'), desc: 'Terraced homes stepping down to the water, each level planted as a hanging garden.' },
+  { title: 'Studio Nine', city: 'Northport', img: asset('assets/location-street.jpg'), desc: 'Compact first homes above a street of independent shops — proof that small can still be generous.' },
 ]
 
 export const milestones = [

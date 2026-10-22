@@ -1,3 +1,4 @@
+import { asset } from '../asset'
 import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -32,7 +33,7 @@ export default function About() {
     <main>
       <Seo title="About the investor" desc="Northfield Property Group — developer of Lumen Grove." />
       <section className="page-hero" style={{ minHeight: '88vh' }}>
-        <div className="bg" style={{ backgroundImage: 'url(/assets/building-exterior.jpg)' }} role="img" aria-label="Northfield development" />
+        <div className="bg" style={{ backgroundImage: `url(${asset('assets/building-exterior.jpg')})` }} role="img" aria-label="Northfield development" />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(0deg,rgba(13,38,30,.86),rgba(13,38,30,.25) 60%)' }} />
         <div className="inner"><div className="wrap">
           <p className="eyebrow light">About the investor</p>
@@ -49,8 +50,8 @@ export default function About() {
           <FadeUp><p className="lead mt-m">Every Northfield project starts with the trees already on site and ends with more canopy than it began with. We measure success in decades: in shade grown, in streets loved, in buildings that belong.</p></FadeUp>
         </div>
         <div style={{ position: 'relative', minHeight: 520 }}>
-          <ParallaxImage src="/assets/residence-interior.jpg" alt="Interior by Northfield" style={{ height: 420, width: '82%', borderRadius: 6 }} />
-          <ParallaxImage src="/assets/amenities-rooftop.jpg" alt="Rooftop garden" speed={16} style={{ height: 270, width: '56%', borderRadius: 6, position: 'absolute', right: 0, bottom: 0, border: '6px solid var(--off)' }} />
+          <ParallaxImage src={asset('assets/residence-interior.jpg')} alt="Interior by Northfield" style={{ height: 420, width: '82%', borderRadius: 6 }} />
+          <ParallaxImage src={asset('assets/amenities-rooftop.jpg')} alt="Rooftop garden" speed={16} style={{ height: 270, width: '56%', borderRadius: 6, position: 'absolute', right: 0, bottom: 0, border: '6px solid var(--off)' }} />
         </div>
       </div></div></section>
 
@@ -79,7 +80,7 @@ export default function About() {
       </div></section>
 
       <section className="section"><div className="wrap"><div className="grid-2">
-        <ParallaxImage src="/assets/business-office.jpg" alt="Northfield studio desk" style={{ height: 'clamp(320px,50vh,520px)', borderRadius: 6 }} />
+        <ParallaxImage src={asset('assets/business-office.jpg')} alt="Northfield studio desk" style={{ height: 'clamp(320px,50vh,520px)', borderRadius: 6 }} />
         <div>
           <p className="eyebrow">What we stand for</p>
           <SplitReveal text={"Patient capital,\npermanent places"} className="h-lg" />

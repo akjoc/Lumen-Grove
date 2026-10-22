@@ -71,3 +71,14 @@ src/styles.css     design tokens + all component styles
 src/pages/         Home, Catalogs (residences+retail+details), Business, Contact(+Privacy), About, ThreeD
 public/assets/     generated imagery (+ video/ slot)
 ```
+
+## GitHub Pages deployment
+
+Live at **https://akjoc.github.io/Lumen-Grove/** — deployed by `.github/workflows/deploy.yml`
+on every push to `main` (Settings → Pages → Source must be **GitHub Actions**).
+
+How it works: the workflow builds with `GITHUB_PAGES=true`, which sets Vite's `base` to
+`/Lumen-Grove/` (local builds stay at `/`). All `public/` files are referenced through the
+`asset()` helper in `src/asset.ts` (never hardcode `/assets/...`), the router gets a matching
+`basename`, and a `postbuild` step copies `dist/index.html` → `dist/404.html` so SPA deep
+links survive a refresh on Pages. To reproduce the Pages build locally: `npm run build:pages`.
