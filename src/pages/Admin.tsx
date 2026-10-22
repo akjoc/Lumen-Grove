@@ -1,3 +1,4 @@
+import { asset } from '../asset'
 import { useState, useEffect, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
@@ -37,7 +38,7 @@ const DEFAULT_CONTENT: ContentItem[] = [
     status: 'Published',
     updated: '19 Oct 2026',
     description: 'A living canopy in the city. Pinned leaf reveal, 01/02/03 architectural statements, and 3D preview link.',
-    image: '/assets/hero-leaves.jpg',
+    image: asset('assets/hero-leaves.jpg'),
     views: '14,820',
   },
   {
@@ -47,7 +48,7 @@ const DEFAULT_CONTENT: ContentItem[] = [
     status: 'Published',
     updated: '19 Oct 2026',
     description: '208 residences across Wings A & B. 1 to 4 bedroom layouts with private planted terraces and garden suites.',
-    image: '/assets/residence-interior.jpg',
+    image: asset('assets/residence-interior.jpg'),
     views: '9,410',
   },
   {
@@ -57,7 +58,7 @@ const DEFAULT_CONTENT: ContentItem[] = [
     status: 'Published',
     updated: '18 Oct 2026',
     description: 'Procedural 3D model with day/evening toggle, camera fly-to, hot spots, and floorplate inspector.',
-    image: '/assets/panorama-aerial.jpg',
+    image: asset('assets/panorama-aerial.jpg'),
     views: '6,230',
   },
   {
@@ -67,7 +68,7 @@ const DEFAULT_CONTENT: ContentItem[] = [
     status: 'Published',
     updated: '17 Oct 2026',
     description: 'Daylight offices and executive suites tailored for creative and tech visionaries. Flexible multi-story floorplates.',
-    image: '/assets/business-office.jpg',
+    image: asset('assets/business-office.jpg'),
     views: '3,840',
   },
   {
@@ -77,7 +78,7 @@ const DEFAULT_CONTENT: ContentItem[] = [
     status: 'Published',
     updated: '16 Oct 2026',
     description: '49 ground-level retail spaces along Bulevar heroja sa Košara with wide pedestrian canopies.',
-    image: '/assets/location-street.jpg',
+    image: asset('assets/location-street.jpg'),
     views: '2,950',
   },
   {
@@ -87,7 +88,7 @@ const DEFAULT_CONTENT: ContentItem[] = [
     status: 'Published',
     updated: '15 Oct 2026',
     description: 'Planted sky terraces, 24/7 wellness center, resident lounge, and signature panoramic viewpoint.',
-    image: '/assets/amenities-rooftop.jpg',
+    image: asset('assets/amenities-rooftop.jpg'),
     views: '5,180',
   },
   {
@@ -97,7 +98,7 @@ const DEFAULT_CONTENT: ContentItem[] = [
     status: 'Published',
     updated: '14 Oct 2026',
     description: 'Developer background, 20-year portfolio, sustainable urban philosophy, and international project milestones.',
-    image: '/assets/building-exterior.jpg',
+    image: asset('assets/building-exterior.jpg'),
     views: '2,110',
   },
   {
@@ -107,7 +108,7 @@ const DEFAULT_CONTENT: ContentItem[] = [
     status: 'Draft',
     updated: '12 Oct 2026',
     description: 'Exclusive invitation-only previews for high-floor penthouses in Wing A with private elevator access.',
-    image: '/assets/residence-interior.jpg',
+    image: asset('assets/residence-interior.jpg'),
     views: '—',
   },
 ]
@@ -188,13 +189,13 @@ const DEFAULT_ENQUIRIES: Enquiry[] = [
 ]
 
 const MEDIA_ASSETS = [
-  { id: 1, name: 'Hero Canopy Foliage', file: '/assets/hero-leaves.jpg', category: 'Hero & Atmosphere', size: '2.4 MB', resolution: '2800 × 1860' },
-  { id: 2, name: 'Lumen Grove Exterior Architecture', file: '/assets/building-exterior.jpg', category: 'Exterior', size: '1.9 MB', resolution: '2400 × 1600' },
-  { id: 3, name: 'Canopy Residence Living Room', file: '/assets/residence-interior.jpg', category: 'Interior', size: '2.1 MB', resolution: '2560 × 1700' },
-  { id: 4, name: 'Creative Tech Office Suite', file: '/assets/business-office.jpg', category: 'Commercial', size: '1.8 MB', resolution: '2400 × 1600' },
-  { id: 5, name: 'Skyline Panorama & Aerial', file: '/assets/panorama-aerial.jpg', category: 'Aerial & Views', size: '3.2 MB', resolution: '3200 × 1800' },
-  { id: 6, name: 'Rooftop Forest & Resident Wellness', file: '/assets/amenities-rooftop.jpg', category: 'Amenities', size: '2.0 MB', resolution: '2400 × 1600' },
-  { id: 7, name: 'Neighborhood Tree-Lined Avenue', file: '/assets/location-street.jpg', category: 'Location', size: '1.7 MB', resolution: '2200 × 1460' },
+  { id: 1, name: 'Hero Canopy Foliage', file: asset('assets/hero-leaves.jpg'), category: 'Hero & Atmosphere', size: '2.4 MB', resolution: '2800 × 1860' },
+  { id: 2, name: 'Lumen Grove Exterior Architecture', file: asset('assets/building-exterior.jpg'), category: 'Exterior', size: '1.9 MB', resolution: '2400 × 1600' },
+  { id: 3, name: 'Canopy Residence Living Room', file: asset('assets/residence-interior.jpg'), category: 'Interior', size: '2.1 MB', resolution: '2560 × 1700' },
+  { id: 4, name: 'Creative Tech Office Suite', file: asset('assets/business-office.jpg'), category: 'Commercial', size: '1.8 MB', resolution: '2400 × 1600' },
+  { id: 5, name: 'Skyline Panorama & Aerial', file: asset('assets/panorama-aerial.jpg'), category: 'Aerial & Views', size: '3.2 MB', resolution: '3200 × 1800' },
+  { id: 6, name: 'Rooftop Forest & Resident Wellness', file: asset('assets/amenities-rooftop.jpg'), category: 'Amenities', size: '2.0 MB', resolution: '2400 × 1600' },
+  { id: 7, name: 'Neighborhood Tree-Lined Avenue', file: asset('assets/location-street.jpg'), category: 'Location', size: '1.7 MB', resolution: '2200 × 1460' },
   { id: 8, name: 'Procedural 3D Canopy Engine', file: 'Three.js / Draco', category: '3D Interactive', size: 'Shader WebGL', resolution: 'Real-time 60fps' },
 ]
 
@@ -252,7 +253,7 @@ export default function Admin() {
     desc: 'Award-winning residential and commercial complex in New Belgrade. 208 residences, street-level retail, modern offices, and a rooftop forest.',
     url: 'https://lumengrove.rs/en',
     indexing: 'Index, follow',
-    ogImage: '/assets/building-exterior.jpg',
+    ogImage: asset('assets/building-exterior.jpg'),
   })
 
   // Settings state
@@ -318,7 +319,7 @@ export default function Admin() {
       setFormType('Page section')
       setFormStatus('Published')
       setFormDesc('')
-      setFormImage('/assets/building-exterior.jpg')
+      setFormImage(asset('assets/building-exterior.jpg'))
     }
     setIsModalOpen(true)
   }
@@ -350,7 +351,7 @@ export default function Admin() {
         type: formType,
         status: formStatus,
         description: formDesc.trim(),
-        image: formImage.trim() || '/assets/building-exterior.jpg',
+        image: formImage.trim() || asset('assets/building-exterior.jpg'),
         updated: updatedStr,
         views: '0',
       }
@@ -1456,7 +1457,7 @@ export default function Admin() {
                     <input
                       value={formImage}
                       onChange={e => setFormImage(e.target.value)}
-                      placeholder="/assets/building-exterior.jpg"
+                      placeholder={asset('assets/building-exterior.jpg')}
                     />
                   </div>
                 </div>

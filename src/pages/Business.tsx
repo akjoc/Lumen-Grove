@@ -1,3 +1,4 @@
+import { asset } from '../asset'
 import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -8,7 +9,7 @@ import { reduced } from '../store'
 gsap.registerPlugin(ScrollTrigger)
 
 /* Fullscreen promo video modal — swap src/poster with the client's film */
-export function VideoModal({ src = '/assets/video/promo.mp4', poster = '/assets/building-exterior.jpg', onClose }: { src?: string; poster?: string; onClose: () => void }) {
+export function VideoModal({ src = asset('assets/video/promo.mp4'), poster = asset('assets/building-exterior.jpg'), onClose }: { src?: string; poster?: string; onClose: () => void }) {
   const video = useRef<HTMLVideoElement>(null)
   const [playing, setPlaying] = useState(true)
   const [muted, setMuted] = useState(true)
@@ -81,7 +82,7 @@ export default function Business() {
       {video && <VideoModal onClose={() => setVideo(false)} />}
       {/* 1 Hero */}
       <section className="page-hero" style={{ minHeight: '100vh' }}>
-        <div className="bg" style={{ backgroundImage: 'url(/assets/business-office.jpg)' }} role="img" aria-label="Business interiors" />
+        <div className="bg" style={{ backgroundImage: `url(${asset('assets/business-office.jpg')})` }} role="img" aria-label="Business interiors" />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(0deg,rgba(13,38,30,.86),rgba(13,38,30,.25) 60%)' }} />
         <div className="inner"><div className="wrap">
           <p className="eyebrow light">Work, beneath the leaves</p>
@@ -96,7 +97,7 @@ export default function Business() {
 
       {/* 2 Connectivity — pinned 3 steps */}
       <section className="hero-pin" ref={connRef} style={{ height: '100vh' }}>
-        <div className="hero-layer back" style={{ backgroundImage: 'url(/assets/building-exterior.jpg)', inset: 0 }} />
+        <div className="hero-layer back" style={{ backgroundImage: `url(${asset('assets/building-exterior.jpg')})`, inset: 0 }} />
         <div className="hero-shade" />
         <div className="hero-progress">{[0, 1, 2].map((i) => <button key={i} className={step === i ? 'on' : ''} tabIndex={-1}>0{i + 1}</button>)}</div>
         {[
@@ -122,7 +123,7 @@ export default function Business() {
             {WINGS.map((w, i) => <button key={w.id} role="tab" aria-selected={wing === i} className={`chip ${wing === i ? 'on' : ''}`} onClick={() => setWing(i)}>{w.id === 'R' ? 'Retail' : `Wing ${w.id}`}</button>)}
           </div>
           <div className="wing-stage">
-            <img className="bgimg" src="/assets/building-exterior.jpg" alt="Lumen Grove wings" />
+            <img className="bgimg" src={asset('assets/building-exterior.jpg')} alt="Lumen Grove wings" />
             <svg viewBox="0 0 100 100" preserveAspectRatio="none" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }} aria-hidden>
               {WINGS.map((w, i) => (
                 <polygon key={w.id} points={w.poly} onClick={() => setWing(i)} style={{ cursor: 'pointer' }}
@@ -144,7 +145,7 @@ export default function Business() {
 
       {/* 4 Panorama */}
       <section className="teaser" style={{ minHeight: '84vh' }}>
-        <div className="bg" style={{ backgroundImage: 'url(/assets/panorama-aerial.jpg)' }} role="img" aria-label="Panoramic view from the rooftop" />
+        <div className="bg" style={{ backgroundImage: `url(${asset('assets/panorama-aerial.jpg')})` }} role="img" aria-label="Panoramic view from the rooftop" />
         <div className="shade" />
         <div className="inner"><div className="wrap">
           <p className="eyebrow light">The top floor</p>

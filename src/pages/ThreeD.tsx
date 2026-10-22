@@ -1,3 +1,4 @@
+import { asset } from '../asset'
 import { Suspense, useEffect, useMemo, useRef, useState } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { OrbitControls, Html, ContactShadows } from '@react-three/drei'
@@ -165,7 +166,7 @@ export default function ThreeD() {
       )}
       {!webgl ? (
         <div style={{ position: 'absolute', inset: 0, display: 'grid', placeItems: 'center', color: '#f6f1e7', textAlign: 'center', padding: 24 }}>
-          <div><img src="/assets/building-exterior.jpg" alt="Lumen Grove exterior" style={{ borderRadius: 10, maxWidth: 720, width: '100%' }} />
+          <div><img src={asset('assets/building-exterior.jpg')} alt="Lumen Grove exterior" style={{ borderRadius: 10, maxWidth: 720, width: '100%' }} />
           <p className="lead light mt-m">WebGL isn't available on this device — here's the grove in still life.</p>
           <Link className="btn gold mt-m" to={`/${lang}/residences`}>Browse residences →</Link></div>
         </div>

@@ -6,8 +6,11 @@ import App from './App'
 import './i18n'
 import './styles.css'
 
+// On GitHub Pages the app lives under /Lumen-Grove/ — tell the router where its root is.
+const basename = import.meta.env.BASE_URL.replace(/\/+$/, '') || undefined
+
 createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <HelmetProvider><BrowserRouter><App /></BrowserRouter></HelmetProvider>
+    <HelmetProvider><BrowserRouter basename={basename}><App /></BrowserRouter></HelmetProvider>
   </React.StrictMode>
 )
